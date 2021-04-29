@@ -83,7 +83,7 @@ export default {
   border-radius: 10px;
 }
 .planheader {
-  font-size: 25px;
+  font-size: 28px;
   text-align: center;
   margin: 20px;
   font-weight: 600;

@@ -83,10 +83,11 @@ app.get('/data', function (req, res) {
 });
 
 const getPlanList = () => {
-    const html = '';
+    let html = ``;
     for (let i=0; i < data.length; i++) {
-        const plan = data[i];
+        let plan = data[i];
         html += `
+        <div class="plan-container">
         <telefonica-choose-plan
           title="${plan.title}"
           title_extra="${plan.title_extra}"
@@ -96,7 +97,7 @@ const getPlanList = () => {
           cost="${plan.cost}"
           image="${plan.image}"
         >
-        </telefonica-choose-plan>`
+        </telefonica-choose-plan></div>`
     }
     return html;
     

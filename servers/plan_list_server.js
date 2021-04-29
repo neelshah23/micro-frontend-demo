@@ -61,7 +61,12 @@ const data = [
         "https://broadbandandphones.co.uk/wp-content/uploads/2020/06/ProductCards-372x120-Big-Sport-F1.jpg",
     },
   ];
-app.use(cors());
+app.use(cors(
+    {
+        'credentials': true,
+        'Access-Control-Allow-Origin': '*'
+    }
+));
 
 app.use(express.static(__dirname));
 

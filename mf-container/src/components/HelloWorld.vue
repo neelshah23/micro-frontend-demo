@@ -1,59 +1,93 @@
 <template>
-
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br>
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
-    </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank" rel="noopener">babel</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener">eslint</a></li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank" rel="noopener">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
-      <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
-      <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
-      <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
-      <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
-    </ul>
-  </div>
+  <section class="decide_recos">
+    <!--#include virtual="/plans/recommended" -->
+  </section>
+  <section class="plan-wrapper">
+    <!--#include virtual="/plans/list" -->
+    <iauro-input title="x"></iauro-input>
+  </section>
 </template>
 
 <script>
+
 export default {
-  name: 'HelloWorld',
-  props: {
-    msg: String
+  name: 'App',
+  data(){return {
+    header: '',
+    planList: '',
+    planData: [{id:1},{id:2},{id:3},{id:4},{id:5}]
+  }},
+  components: {
+
+  },
+  methods: {
+    load(){
+      this.fetch_recommended_plan();
+      this.fetch_plans();
+      // this.fetct_by_include();
+    },
+    fetch_recommended_plan() {
+      const scope = this;
+      window
+          .fetch("http://localhost:8080/plans/recommended")
+          .then(res => res.text())
+          .then(html => {
+            scope.header = html;
+          });
+    },
+    fetch_plans() {
+      const scope = this;
+      window
+          .fetch("http://localhost:8080/plans/list")
+          .then(res => res.text())
+          .then(html => {
+            scope.planList = html;
+          });
+    },
+    fetct_by_include(){
+      const element = document.querySelector(".decide_recos");
+      // const url = element.getAttribute("data-fragment");
+
+      window
+          .fetch("/plans/recommended")
+          .then(res => res.text())
+          .then(html => {
+            element.innerHTML = html;
+          });
+    }
+  },
+  mounted(){
+    this.load();
   }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h3 {
-  margin: 40px 0 0;
+<style>
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
+.header{
+  box-shadow:0 3px 5px -1px rgba(0,0,0,.2),0 6px 10px 0 rgba(0,0,0,.14),0 1px 18px 0 rgba(0,0,0,.12);
+  margin: 20px;
+  border-radius: 10px;
 }
-li {
-  display: inline-block;
-  margin: 0 10px;
+.plan-wrapper{
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  place-content: center;
+
 }
-a {
-  color: #42b983;
+.plan-container{
+  flex: 1 1 30%;
+  max-width: 30%;
+  box-shadow:0 3px 5px -1px rgba(0,0,0,.2),0 6px 10px 0 rgba(0,0,0,.14),0 1px 18px 0 rgba(0,0,0,.12);
+  margin: 20px;
+  border-radius: 10px;
+
 }
 </style>

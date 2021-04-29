@@ -1,11 +1,15 @@
 <template>
   <div>
+    <div class="planheader">Recommended plan</div>
+
     <section class="header">
       <telefonica-recommended-plan
         foregroundColor="#ffffff"
       ></telefonica-recommended-plan>
     </section>
     <section class="plan-wrapper" v-if="planData">
+      <div class="planheader">Choose Plan</div>
+
       <div class="plan-container" v-for="plan in planData" :key="plan.id">
         <telefonica-choose-plan
           :title="plan.title"
@@ -34,15 +38,15 @@ export default {
   },
   components: {},
   methods: {
-    fetchData(){
+    fetchData() {
       const scope = this;
       window
-          .fetch("http://3.6.8.218:8080/plans/data")
-          .then(res => res.json())
-          .then(d => {
-            scope.planData = d;
-          });
-    }
+        .fetch("http://3.6.8.218:8080/plans/data")
+        .then((res) => res.json())
+        .then((d) => {
+          scope.planData = d;
+        });
+    },
   },
   mounted() {
     this.fetchData();
@@ -77,5 +81,11 @@ export default {
     0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12);
   margin: 20px;
   border-radius: 10px;
+}
+.planheader {
+  font-size: 25px;
+  text-align: center;
+  margin: 20px;
+  font-weight: 600;
 }
 </style>

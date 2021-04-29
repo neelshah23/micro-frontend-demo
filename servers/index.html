@@ -1,45 +1,54 @@
 <html>
-<head>
-  <link href="https://iauro-elements.s3.ap-south-1.amazonaws.com/lib/styles.css" rel="stylesheet" />
-  <script src="https://iauro-elements.s3.ap-south-1.amazonaws.com/lib/web-components.js"></script>
-  <style>
-    #app {
-      font-family: Avenir, Helvetica, Arial, sans-serif;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      text-align: center;
-      color: #2c3e50;
-    }
-    .header {
-      box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2),
-        0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12);
-      margin: 20px;
-      border-radius: 10px;
-    }
-    .plan-wrapper {
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      place-content: center;
-    }
-    .plan-container {
-      flex: 1 1 30%;
-      max-width: 30%;
-      box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2),
-        0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12);
-      margin: 20px;
-      border-radius: 10px;
-    }
+  <head>
+    <link
+      href="https://iauro-elements.s3.ap-south-1.amazonaws.com/lib/styles.css"
+      rel="stylesheet"
+    />
+    <script src="https://iauro-elements.s3.ap-south-1.amazonaws.com/lib/web-components.js"></script>
+    <style>
+      #app {
+        font-family: Avenir, Helvetica, Arial, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-align: center;
+        color: #2c3e50;
+      }
+      .header {
+        box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2),
+          0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12);
+        margin: 20px;
+        border-radius: 10px;
+      }
+      .plan-wrapper {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        place-content: center;
+      }
+      .plan-container {
+        flex: 1 1 30%;
+        max-width: 30%;
+        box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2),
+          0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12);
+        margin: 20px;
+        border-radius: 10px;
+      }
+      .planheader {
+        font-size: 25px;
+        text-align: center;
+        margin: 20px;
+        font-weight: 600;
+      }
     </style>
-    
-</head>
-<body class="decide_layout">
-<div class="header">
-  <!--#include virtual="/plans/recommended" -->
-
-</div>
-<aside class="plan-wrapper">
-  <!--#include virtual="/plans/list" -->
-</aside>
-</body>
+  </head>
+  <body>
+    <div class="planheader">Recommended plan</div>
+    <div class="header">
+      <!--#include virtual="/plans/recommended" -->
+    </div>
+    <div class="planheader">Choose Plan</div>
+    <aside class="plan-wrapper">
+      <!--#include virtual="/plans/list" -->
+    </aside>
+  </body>
 </html>

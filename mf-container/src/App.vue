@@ -5,7 +5,7 @@
         foregroundColor="#ffffff"
       ></telefonica-recommended-plan>
     </section>
-    <section class="plan-wrapper">
+    <section class="plan-wrapper" v-if="planData">
       <div class="plan-container" v-for="plan in planData" :key="plan.id">
         <telefonica-choose-plan
           :title="plan.title"
@@ -29,68 +29,24 @@ export default {
     return {
       header: "",
       planList: "",
-      planData: [
-        {
-          id: 1,
-          title: "50GB",
-          title_extra: "40GB",
-          label1: "Unlimited minutes and texts",
-          label2: "12-month contracts: add more SIMs to save",
-          cost: "20",
-          label3: "12-month contract",
-          image:
-            "https://broadbandandphones.co.uk/wp-content/uploads/2020/06/ProductCards-372x120-Big-Sport-F1.jpg",
-        },
-        {
-          id: 2,
-          title: "3GB",
-          title_extra: "2GB",
-          label1: "Unlimited minutes and texts",
-          label2: "2-month contracts: add more SIMs to save",
-          cost: "3",
-          label3: "2-month contract",
-          image:
-            "https://broadbandandphones.co.uk/wp-content/uploads/2020/06/ProductCards-372x120-Big-Sport-F1.jpg",
-        },
-        {
-          id: 3,
-          title: "30GB",
-          title_extra: "15GB",
-          label1: "Unlimited minutes and texts",
-          label2: "12-month contracts: add more SIMs to save",
-          cost: "12",
-          label3: "12-month contract",
-          image:
-            "https://broadbandandphones.co.uk/wp-content/uploads/2020/06/ProductCards-372x120-Big-Sport-F1.jpg",
-        },
-        {
-          id: 4,
-          title: "50GB",
-          title_extra: "40GB",
-          label1: "Unlimited minutes and texts",
-          label2: "12-month contracts: add more SIMs to save",
-          cost: "20",
-          label3: "12-month contract",
-          image:
-            "https://broadbandandphones.co.uk/wp-content/uploads/2020/06/ProductCards-372x120-Big-Sport-F1.jpg",
-        },
-        {
-          id: 5,
-          title: "50GB",
-          title_extra: "40GB",
-          label1: "Unlimited minutes and texts",
-          label2: "12-month contracts: add more SIMs to save",
-          cost: "20",
-          label3: "12-month contract",
-          image:
-            "https://broadbandandphones.co.uk/wp-content/uploads/2020/06/ProductCards-372x120-Big-Sport-F1.jpg",
-        },
-      ],
+      planData: [],
     };
   },
   components: {},
-  methods: {},
-  mounted() {},
+  methods: {
+    fetchData(){
+      const scope = this;
+      window
+          .fetch("http://localhost:8080/plans/data")
+          .then(res => res.json())
+          .then(d => {
+            scope.planData = d;
+          });
+    }
+  },
+  mounted() {
+    this.fetchData();
+  },
 };
 </script>
 

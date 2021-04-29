@@ -7,8 +7,9 @@
         foregroundColor="#ffffff"
       ></telefonica-recommended-plan>
     </section>
-    <section class="plan-wrapper" v-if="planData">
       <div class="planheader">Choose Plan</div>
+
+    <section class="plan-wrapper" v-if="planData">
 
       <div class="plan-container" v-for="plan in planData" :key="plan.id">
         <telefonica-choose-plan

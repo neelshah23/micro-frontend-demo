@@ -37,7 +37,7 @@ export default {
     fetchData(){
       const scope = this;
       window
-          .fetch("http://localhost:8080/plans/data")
+          .fetch("http://3.6.8.218/plans/data")
           .then(res => res.json())
           .then(d => {
             scope.planData = d;
